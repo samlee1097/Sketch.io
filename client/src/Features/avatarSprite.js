@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import { AVATAR_LENGTHS } from "../Utils/AvatarConfig";
 
 // Inside of this "slice", it contains all of the information about the reducer, the actions it will take, the name of the state, and the initial values of the state
 // createSlice from redux toolkit makes it easier to create everything inside of one file and export it all as one thing as well
@@ -10,14 +11,14 @@ export const avatarSlice = createSlice({
     // Initial values of the state, passed in through the value object
     initialState: {
         value: {
-            top: 6, //26 items 
-            hairColor: 0, //12 items
-            clothes: 0, //12 items
-            clothesColor: 0, //18 items
-            eyes: 0, //12 items
-            eyebrow: 0, //13 items
-            mouth: 0, //13 items
-            skin: 0, //7 items
+            top: Math.floor(Math.random() * AVATAR_LENGTHS.top),
+            hairColor: Math.floor(Math.random() * AVATAR_LENGTHS.hairColor),
+            clothes: Math.floor(Math.random() * AVATAR_LENGTHS.clothes),
+            clothesColor: Math.floor(Math.random() * AVATAR_LENGTHS.clothesColor),
+            eyes: Math.floor(Math.random() * AVATAR_LENGTHS.eyes),
+            eyebrow: Math.floor(Math.random() * AVATAR_LENGTHS.eyebrow),
+            mouth: Math.floor(Math.random() * AVATAR_LENGTHS.mouth),
+            skin: Math.floor(Math.random() * AVATAR_LENGTHS.skin),
             imageURL: 'https://api.dicebear.com/9.x/avataaars/svg?top[]=bigHair&hairColor[]=auburn&clothes[]=blazer&clothesColor[]=black&eyes[]=close&eyebrow[]=angry&mouth[]=concerned&skin[]=tanned'
         }
     },
