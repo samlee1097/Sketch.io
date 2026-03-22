@@ -31,9 +31,10 @@ Live multiplayer drawing and chat app where users can join private rooms, intera
 - NodeJS
 - JavaScript
 - Redux
-- Heroku CLI
 - DiceBear API (for creating avatar)
 - ReactJS
+- Vercel (Client Deployment)
+- Render (Server Deployment)
 
 <a name="setup"/>
 
