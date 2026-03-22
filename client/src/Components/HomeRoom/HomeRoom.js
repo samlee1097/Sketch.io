@@ -3,7 +3,7 @@ import AvatarSelect from './AvatarSelect';
 import {BsFillSuitHeartFill, BsGithub} from "react-icons/bs";
 import "../../Stylings/HomeRoom.css";
 import chat from "./chat.png"
-import * as style from '@dicebear/avatars-avataaars-sprites';
+import property from '../../Utils/AvatarSchema';
 import Logo from '../Logo';
 
 // Redux Elements
@@ -18,7 +18,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
     const [gameId, setGameId] = useState('');
     const [image, setImage] = useState(avatar.imageURL);
     const [funAlert, setFunAlert]=useState(0);
- 
+
     const funMessages = ["Customizes your avatar!", "Look at me!", "I look so good",  "Look good, play good", "My dog will like this", "Let's kick some butt!", "A new look?", "Mirror mirror on the wall", "This is gonna work!", "I look amazing!", "Wow, what a look!", "Model award goes to...", "YES!! I like this!", "I'm the only ten I see!"];
 
     const userData = {
@@ -31,7 +31,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
     function handleSubmit(event){
         event.preventDefault();
 
-        if (usernameEntry !== "" && gameId !== "") {      
+        if (usernameEntry !== "" && gameId !== "") {
             socket.emit("join_private_room", userData);
             setUserList(()=> [userData])
             setRoom(()=>"game");
@@ -46,9 +46,16 @@ function HomeRoom({setRoom, socket, setUserList}) {
     }, [socket])
 
     // Image URL
-    const property = style.schema.properties;
-    const avatarURL = `https://avatars.dicebear.com/api/avataaars/:seed.svg?top[]=${property.top.items.enum[avatar.top]}&hairColor[]=${property.hairColor.items.enum[avatar.hairColor]}&clothes[]=${property.clothes.items.enum[avatar.clothes]}&clothesColor[]=${property.clothesColor.items.enum[avatar.clothesColor]}&eyes[]=${property.eyes.items.enum[avatar.eyes]}&eyebrow[]=${property.eyebrow.items.enum[avatar.eyebrow]}&mouth[]=${property.mouth.items.enum[avatar.mouth]}&skin[]=${property.skin.items.enum[avatar.skin]}`;
-
+    const avatarURL =
+        `https://api.dicebear.com/9.x/avataaars/svg` +
+        `?top=${property.top.items.enum[avatar.top]}` +
+        `&hairColor=${property.hairColor.default[avatar.hairColor]}` +
+        `&clothing=${property.clothing.items.enum[avatar.clothes]}` +
+        `&clothesColor=${property.clothesColor.default[avatar.clothesColor]}` +
+        `&eyes=${property.eyes.items.enum[avatar.eyes]}` +
+        `&eyebrows=${property.eyebrows.items.enum[avatar.eyebrow]}` +
+        `&mouth=${property.mouth.items.enum[avatar.mouth]}` +
+        `&skinColor=${property.skinColor.default[avatar.skin]}`;
     const avatarArray = [];
     for (const [key, value] of Object.entries(avatar)) {
         avatarArray.push(<AvatarSelect avatar ={avatar} name={key} number={value} sectionName={(key[0].toUpperCase() + key.slice(1,key.length).replace("C", " C"))} avatarURL={avatarURL} setFunAlert={setFunAlert} funAlert={funAlert}/>)
@@ -57,7 +64,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
 
     // Live changes to the image
     useEffect(()=>{setImage(avatarURL)},[avatarURL])
-    
+
     return (
         <div className="App">
             <Logo/>
@@ -86,7 +93,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
                             required
                             onChange={e=>setGameId(e.target.value)}
                         />
-                        
+
                     </label>
                     <div id="avatar-container">
                         <img id="avatar-image" src={image} alt="Avatar"/>
@@ -119,7 +126,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🟢<strong>Homepage:</strong> Implemented "Avataaars" customization options.<br/>
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🟢Implemented early phases of <strong>Redux</strong> into our application.<br/>
-                                
+
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🟢Began looking into <strong>Socket.io</strong> to continue towards cooperative play!
                                 <br/><br/>
 
@@ -137,7 +144,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
                                 The person with the most points when all the rounds are up will then be crowned the winner. WOOOOOO!
                             </div>
                     </details>
-                        
+
                     <details>
                         <summary>How to Play</summary>
                             <div>
@@ -147,7 +154,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
                             </div>
                     </details>
                 </section>
-                
+
             </main>
 
             <footer id="homepage-footer">
@@ -161,7 +168,7 @@ function HomeRoom({setRoom, socket, setUserList}) {
                     <a href="#credits">Credits</a>
                 </div>
             </footer>
-            
+
         </div>
     )
 }

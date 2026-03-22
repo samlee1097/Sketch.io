@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../Stylings/AvatarSelect.css";
 import {BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill} from "react-icons/bs";
+import { AVATAR_LENGTHS } from "../../Utils/AvatarConfig";
 
 // Redux Elements
 import {useDispatch} from "react-redux";
@@ -8,33 +9,7 @@ import {leftArrow, rightArrow} from "../../Features/avatarSprite";
 
 function AvatarSelect({avatar, name, number, sectionName, avatarURL, setFunAlert, funAlert}) {
     const dispatch = useDispatch();
-    let modNum = 0;
-    switch(name){
-        case 'top':
-            modNum = 33;
-            break;
-        case 'clothesColor':
-            modNum = 18;
-            break;
-        case 'hairColor':
-        case 'clothes':
-            modNum = 12;
-            break;
-        case 'eyes':
-            modNum = 15;
-            break;
-        case 'eyebrow':
-            modNum = 19;
-            break;
-        case 'mouth':
-            modNum = 13;
-            break;
-        case 'skin':
-            modNum =  7;
-            break;
-        default:
-            break;
-    }
+    let modNum = AVATAR_LENGTHS[name];
 
     const clickLeft = () => {
 
