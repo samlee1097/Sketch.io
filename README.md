@@ -43,7 +43,7 @@ Start by **forking** the project template repository and then clone the project:
 
 ```console
 $ git clone git@github.com:samlee1097/Sketch.io.git
-$ cd Samric.io
+$ cd Sketch.io
 $ npm install && npm start --prefix server
 $ npm install && npm start --prefix client
 ```
@@ -56,7 +56,7 @@ $ npm install && npm start --prefix client
 
 ![image](https://user-images.githubusercontent.com/87099910/154176789-13a72a4e-0126-4805-a536-cde738b98cef.png)
 
-### Component Hierarcy
+### Component Hierarchy
 
 ![image](https://user-images.githubusercontent.com/87099910/153726455-590bb6cc-4e10-4e03-b4b3-8e7502dd20ca.png)
 
@@ -68,7 +68,7 @@ User will be able to:
 * Join a specific room with username & room ID
 * Customize avatar before joining
 * Draw on a canvas with different tools/colors
-* Share canvas with others through the chat
+* Share the canvas with others through the chat
 * Share live text and messages with others in the room
 
 **Stretch goals:**
